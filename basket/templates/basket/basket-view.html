@@ -1,0 +1,68 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<head>
+  <meta charset="utf-8">
+  <title>Carrito</title>
+  <link rel="stylesheet" href="{% static 'basket/basket-page.css' %}">
+</head>
+{% if empty %}
+
+<h2>{{ empty_message }}</h2>
+
+{% else %}
+
+<div class="heading-basket">
+  <center>
+    <h2>Carrito de Compras</h2>
+  </center>
+  
+</div>
+
+<div class="col-sm-8 col-sm-offset-2">
+
+
+<table class="table">
+  <tr>
+    <th></th>
+    <th>Medicamento</th>
+    <th>Compuesto</th>
+    <th><span class="tesco-hdr"><img src="{% static 'basket/farmacias_economicas_logo.png'%}" alt="Tesco Logo"></span></th>
+    <th><span class="sainsburys-hdr"><img src="{% static 'basket/fybeca_logo.png'%}" alt="Sainsburys Logo"></span></th>
+    <th><span class="morrisons-hdr"><img src="{% static 'basket/pharmacys_logo.png'%}" alt="morrisons Logo"></span></th>
+    <th>Cantidad</th>
+    <th></th>
+  </tr>
+  {% for item in basket.carritoitem_set.all %}
+
+  <tr>
+    <td width="102"><img src="{{item.producto.imagen.url}}" class="basket-thumbnails" width="100" height="100" ></td>
+    <td>{{item.producto.nombre}}</td>
+    <td>{{item.producto.compuesto}}</td>
+    <td>${{item.producto.precio_farmacias_economicas}}</td>
+    <td>${{item.producto.precio_fybeca}}</td>
+    <td>${{item.producto.precio_pharmacys}}</td>
+    <td>{{item.cantidad}}</td>
+    <td><a href="{% url 'basket:update' item.producto.slug %}?quantity=0" class="remove-from-basket">Eliminar</a></td>
+  </tr>
+  {% endfor %}
+  <tfoot>
+    <td>Total</td>
+    <td></td>
+    <td></td>
+    <td>${{basket.total_farmacias_economicas}}</td>
+    <td>${{basket.total_fybeca}}</td>
+    <td>${{basket.total_pharmacys}}</td>
+    <td></td>
+    <td>
+
+    </td>
+  </tfoot>
+</table>
+
+</div>
+{% endif %}
+
+{% endblock %}

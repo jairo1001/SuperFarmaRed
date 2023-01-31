@@ -1,0 +1,23 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+{% block content %}
+  <head>
+    <meta charset="utf-8">
+    <title>Categorias</title>
+    <link rel="stylesheet" href="{% static 'products/categories-page.css '%}">
+  </head>
+  <center>
+    <h2>Categorías</h2>
+  </center>
+  <div class="Categories">
+
+    {% for category in categories %}
+      <div class="category">
+        <a href="{{category.get_absolute_url}}"><img src="{{category.imagen.url}}" class="thumbnails"></a>
+        <h5><a href="{{category.get_absolute_url}}" class="category-name">{{category.nombre}}</a></h5>
+
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

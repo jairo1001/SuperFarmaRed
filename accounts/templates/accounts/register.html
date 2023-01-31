@@ -1,0 +1,27 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+<title>Register</title>
+<link rel="stylesheet" href="{% static 'accounts/register.css' %}">
+<section class="hero3">
+  <div class="site-description-register">
+    <h2>Registro en SuperFarmaRed</h2>
+    <br>
+    <form class="site-form-register" action="{% url 'accounts:register' %}" method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="fieldWrapper-register">
+        {{ field.errors }}
+        <span class="field-tags">{{ field.label_tag }}</span> {{ field }}
+        {% if field.help_text %}
+        <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+      <button class="btn-register-auth" type="submit"><span>Registrarse</span></button>
+    </form>
+  </div>
+</section>
+{% endblock %}

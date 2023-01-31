@@ -1,0 +1,20 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+{% block content %}
+  <head>
+    <meta charset="utf-8">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="{% static 'home-styles.css' %}">
+  </head>
+  <body>
+    <section class="hero">
+      <div class="site-description">
+        <h3>Comparación de precios de Medicamentos</h3>
+        <p>Una aplicación que permite comparar precios de medicamentos en las principales farmacias.</p>
+        <br>
+      </div>
+    </section>
+  </body>
+{% endblock %}
