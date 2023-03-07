@@ -53,6 +53,7 @@ def lista_productos_eliminados():
                         print(precio_pharmacys)
                         producto = Producto.objects.get(url_pharmacys=url)
                         producto.precio_pharmacys=precio_pharmacys
+                        producto.save()
                     except AttributeError:
                         producto = Producto.objects.get(url_pharmacys=url)
                         lista_eliminados.append(producto)
